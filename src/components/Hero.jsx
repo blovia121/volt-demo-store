@@ -26,7 +26,7 @@ const Hero = () => {
       />
 
       {/* Glass Overlay */}
-      <section className="absolute inset-0 bg-linear-to-b from-black/80 to-white/30 backdrop-blur-[1px]" />
+      <section className="absolute inset-0 bg-linear-to-b from-black/90 to-orange-400/30 backdrop-blur-[1px]" />
 
       {/* Content */}
       <section className="relative z-10 text-center text-white px-4">
@@ -61,27 +61,6 @@ const Hero = () => {
           <ArrowRight className="w-5 h-5" />
         </motion.button>
       </section>
-
-      {/* Scroll Indicator */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <motion.section
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-white rounded-full flex justify-center hover:cursor-pointer"
-          onClick={scrollToCatalog}
-        >
-          <motion.section
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-white rounded-full mt-2"
-          />
-        </motion.section>
-      </motion.section>
     </section>
   );
 };

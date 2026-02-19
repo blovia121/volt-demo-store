@@ -97,7 +97,7 @@ const Navbar = () => {
               setIsMobileMenuOpen(false);
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="text-2xl font-light text-gray-800 cursor-pointer"
+            className="text-4xl font-semibold text-orange-800 cursor-pointer"
           >
             Haven<span className="text-2xl text-orange-500 font-bold">.</span>
           </motion.button>
@@ -109,7 +109,7 @@ const Navbar = () => {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 whileHover={{ color: "#f97316" }}
-                className="text-gray-600 hover:text-orange-500 transition-colors font-light cursor-pointer"
+                className="text-orange-300 hover:text-orange-500 transition-colors font-normal cursor-pointer"
               >
                 {item.label}
               </motion.button>
