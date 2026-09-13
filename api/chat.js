@@ -74,21 +74,10 @@ async function callGroq(messages, temperature = 0.3) {
   return data.choices[0].message.content.trim();
 }
 
-function searchKnowledgeBase(query) {
-  const queryLower = query.toLowerCase();
-  const sections = KNOWLEDGE_BASE.split('\n\n');
-  let bestSection = '';
-  let bestScore = 0;
-  for (const section of sections) {
-    const score = queryLower
-      .split(/\s+/)
-      .filter((word) => word.length > 2 && section.toLowerCase().includes(word)).length;
-    if (score > bestScore) {
-      bestScore = score;
-      bestSection = section;
-    }
-  }
-  return bestSection || KNOWLEDGE_BASE;
+// Pass the entire knowledge base to the AI. For a small KB like this,
+// the AI finds the right section itself — more accurate than a keyword search.
+function getRelevantPolicy() {
+  return KNOWLEDGE_BASE;
 }
 
 // Log the interaction to Redis (fire-and-forget — never blocks the reply)
@@ -181,11 +170,11 @@ Tracking number: ${order.tracking_number || 'Not available yet'}`;
       }
     } else {
       const question = intent.question || message;
-      const context = searchKnowledgeBase(question);
+      const context = getRelevantPolicy();
       reply = await callGroq([
         {
           role: 'user',
-          content: `You are a helpful customer support agent. Use the following store policy to answer the user's question. If the answer isn't in the policy, politely say you don't have that information.\n\nStore policy excerpt:\n${context}\n\nUser question: ${question}`,
+          content: `You are a helpful customer support agent. Use the following store policy to answer the user's question. If the answer isn't in the policy, politely say you don't have that information.\n\nStore policy:\n${context}\n\nUser question: ${question}`,
         },
       ]);
     }
