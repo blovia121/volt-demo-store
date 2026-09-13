@@ -194,10 +194,16 @@ const Dashboard = () => {
                               className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
                                 log.intent === 'order_status'
                                   ? 'bg-orange-100 text-orange-700'
+                                  : log.intent === 'human_handoff'
+                                  ? 'bg-red-100 text-red-700'
                                   : 'bg-purple-100 text-purple-700'
                               }`}
                             >
-                              {log.intent === 'order_status' ? 'Order' : 'Policy'}
+                              {log.intent === 'order_status'
+                                ? 'Order'
+                                : log.intent === 'human_handoff'
+                                ? 'Handoff'
+                                : 'Policy'}
                             </span>
                           </td>
                           <td className="px-6 py-3 text-gray-700 max-w-md truncate">
@@ -207,7 +213,7 @@ const Dashboard = () => {
                             {log.resolved ? (
                               <span className="text-green-600">✓ Resolved</span>
                             ) : (
-                              <span className="text-red-500">✗ Not found</span>
+                              <span className="text-red-500">✗ Not resolved</span>
                             )}
                           </td>
                         </motion.tr>

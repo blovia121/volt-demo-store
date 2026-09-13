@@ -114,13 +114,16 @@ export default async function handler(req, res) {
     }
 
     const classificationPrompt = `You are a customer support agent for an online store.
-You have access to two tools:
-1. order_status: use this when the user asks about a specific order. Extract the order ID (like 1001).
-2. policy_question: use this when the user asks about store policies.
+Classify the user's message into one of three intents:
+
+1. order_status: the user is asking about a specific order. Extract the order ID (a number like 1001).
+2. policy_question: the user is asking about store policies (shipping, returns, warranty, payment, cancellation, contact).
+3. human_handoff: the user is asking to speak to a human, or expressing frustration that the AI can't help, or the request is outside customer support scope.
 
 Respond ONLY with a JSON object in one of these formats:
 - {"action": "order_status", "order_id": "1001"}
 - {"action": "policy_question", "question": "the user's question"}
+- {"action": "human_handoff", "reason": "brief reason"}
 
 No other text.`;
 
@@ -168,6 +171,10 @@ Tracking number: ${order.tracking_number || 'Not available yet'}`;
           },
         ]);
       }
+    } else if (intent.action === 'human_handoff') {
+      // User wants a human, or the AI can't help
+      reply = `I understand. Let me connect you with our team.\n\nYou can reach us at:\n- **Email:** support@volt-store.com\n- **Phone:** 1-800-555-0199\n- **Hours:** Monday to Friday, 9 AM to 5 PM EST\n\nWe'll get back to you as soon as possible.`;
+      resolved = false;
     } else {
       const question = intent.question || message;
       const context = getRelevantPolicy();
