@@ -21,7 +21,7 @@ const Hero = () => {
       <section
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("https://plus.unsplash.com/premium_photo-1706140675031-1e0548986ad1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODB8fGZ1cm5pdHVyZSUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500")',
+          backgroundImage: 'url("https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&q=80&w=1600")',
         }}
       />
 
@@ -36,7 +36,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-5xl md:text-7xl font-light mb-6"
         >
-          Elevate your Space
+          Premium Tech, Delivered Fast
         </motion.h1>
 
         <motion.p
@@ -45,7 +45,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto"
         >
-          Discover furniture that brings peace and simplicity to your space
+          Quality gadgets and accessories with free shipping on orders over $50
         </motion.p>
 
         <motion.button
@@ -57,7 +57,7 @@ const Hero = () => {
           onClick={scrollToCatalog}
           className="bg-orange-500/90 backdrop-blur-sm text-white px-8 py-4 rounded-full font-light text-lg flex items-center gap-2 mx-auto border border-white/20 shadow-2xl hover:cursor-pointer"
         >
-          Explore Collection
+          Shop Now
           <ArrowRight className="w-5 h-5" />
         </motion.button>
       </section>

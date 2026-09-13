@@ -1,15 +1,15 @@
 export const products = [
   {
     id: 1,
-    name: "Nordic Oak Chair",
-    price: 299.99,
-    category: "chairs",
-    color: "oak",
-    description: "A minimalist chair crafted from solid oak with ergonomic design for maximum comfort.",
-    features: ["Solid Wood", "Ergonomic Design", "Easy Assembly", "Natural Finish"],
+    name: "Wireless Headphones",
+    price: 89.99,
+    category: "audio",
+    color: "black",
+    description: "Premium over-ear headphones with active noise cancellation and 30-hour battery life.",
+    features: ["Active Noise Cancellation", "30h Battery", "Bluetooth 5.3", "Foldable Design"],
     images: [
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500",
-      "https://images.unsplash.com/photo-1517705008128-361805f42e86?w=500"
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+      "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500"
     ],
     inStock: true,
     isPopular: true,
@@ -17,15 +17,15 @@ export const products = [
   },
   {
     id: 2,
-    name: "Modern Glass Desk",
-    price: 599.99,
-    category: "desks",
-    color: "clear",
-    description: "Sleek glass desk with powder-coated steel frame. Perfect for modern workspaces.",
-    features: ["Tempered Glass", "Steel Frame", "Cable Management", "Easy Clean"],
+    name: "Smart Watch",
+    price: 199.99,
+    category: "wearables",
+    color: "silver",
+    description: "Track fitness, receive notifications, and monitor your health with a bright always-on display.",
+    features: ["Heart Rate Monitor", "GPS", "Water Resistant", "7-Day Battery"],
     images: [
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500",
-      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500"
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500"
     ],
     inStock: true,
     isPopular: true,
@@ -33,15 +33,15 @@ export const products = [
   },
   {
     id: 3,
-    name: "Minimalist Sofa",
-    price: 1299.99,
-    category: "sofas",
-    color: "gray",
-    description: "Low-profile sofa with premium fabric and memory foam cushions.",
-    features: ["Premium Fabric", "Memory Foam", "Modular Design", "Washable Covers"],
+    name: "Bluetooth Speaker",
+    price: 59.99,
+    category: "audio",
+    color: "black",
+    description: "Portable, waterproof speaker with deep bass and 20-hour playtime.",
+    features: ["Waterproof IPX7", "20h Playtime", "Deep Bass", "USB-C Charging"],
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500",
-      "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=500"
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500",
+      "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=500"
     ],
     inStock: true,
     isPopular: false,
@@ -49,15 +49,15 @@ export const products = [
   },
   {
     id: 4,
-    name: "Floating Shelf Set",
-    price: 149.99,
-    category: "storage",
-    color: "walnut",
-    description: "Set of three floating shelves in premium walnut finish.",
-    features: ["Solid Wood", "Hidden Brackets", "Easy Installation", "Set of 3"],
+    name: "Laptop Stand",
+    price: 34.99,
+    category: "accessories",
+    color: "silver",
+    description: "Ergonomic aluminum laptop stand that improves posture and keeps your desk cool.",
+    features: ["Aluminum Build", "Adjustable Height", "Ventilated", "Fits 11-17 inch"],
     images: [
-      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500",
-      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500"
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500",
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500"
     ],
     inStock: true,
     isPopular: true,
@@ -65,15 +65,15 @@ export const products = [
   },
   {
     id: 5,
-    name: "Industrial Bed Frame",
-    price: 899.99,
-    category: "beds",
-    color: "black",
-    description: "Industrial-style bed frame with iron piping and solid wood slats.",
-    features: ["Iron Frame", "Wood Slats", "Under-bed Storage", "Tool-free Assembly"],
+    name: "USB-C Hub",
+    price: 49.99,
+    category: "accessories",
+    color: "gray",
+    description: "7-in-1 USB-C hub with HDMI, USB 3.0, SD card reader, and 100W power delivery.",
+    features: ["7-in-1", "4K HDMI", "100W PD", "SD Card Reader"],
     images: [
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500",
-      "https://images.unsplash.com/photo-1505884065213-065a7be19364?w=500"
+      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500",
+      "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=500"
     ],
     inStock: false,
     isPopular: false,
@@ -81,18 +81,18 @@ export const products = [
   },
   {
     id: 6,
-    name: "Scandinavian Dining Table",
-    price: 799.99,
-    category: "tables",
+    name: "Wireless Earbuds",
+    price: 129.99,
+    category: "audio",
     color: "white",
-    description: "Expanding dining table with Scandinavian design principles.",
-    features: ["Expandable", "Solid Beech", "Scratch Resistant", "Seats 6-8"],
+    description: "True wireless earbuds with adaptive noise cancellation and a compact charging case.",
+    features: ["Adaptive ANC", "24h Total Battery", "Touch Controls", "Wireless Charging"],
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500",
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500"
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500",
+      "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500"
     ],
     inStock: true,
     isPopular: true,
-    isNew: false
+    isNew: true
   }
 ];

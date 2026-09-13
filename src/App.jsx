@@ -11,6 +11,7 @@ import CartSidebar from './components/CartSidebar';
 import ProductModal from './components/ProductModal';
 import CheckoutModal from './components/CheckoutModal';
 import Footer from './components/Footer';
+import ChatWidget from './components/ChatWidget';
 import { products } from './data/product';
 
 function AppContent() {
@@ -37,6 +38,7 @@ function AppContent() {
       <CartSidebar />
       <ProductModal />
       <CheckoutModal />
+      <ChatWidget />
     </section>
   );
 }

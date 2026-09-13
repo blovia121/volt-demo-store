@@ -8,8 +8,8 @@ const FiltersPanel = () => {
   const { filters, sort } = useSelector(state => state.products);
   const dispatch = useDispatch();
 
-  const categories = ['all', 'chairs', 'desks', 'sofas', 'storage', 'beds', 'tables'];
-  const colors = ['all', 'oak', 'walnut', 'white', 'black', 'gray', 'clear'];
+  const categories = ['all', 'audio', 'wearables', 'accessories'];
+  const colors = ['all', 'black', 'white', 'silver', 'gray'];
 
   return (
     <motion.section
@@ -24,7 +24,7 @@ const FiltersPanel = () => {
             <Filter className="w-5 h-5" />
             <span className="font-light">Filters:</span>
           </section>
-          
+
           {/* Category Filter */}
           <select
             value={filters.category}
@@ -33,11 +33,13 @@ const FiltersPanel = () => {
           >
             {categories.map(category => (
               <option key={category} value={category}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
+                {category === 'all'
+                  ? 'All Categories'
+                  : category.charAt(0).toUpperCase() + category.slice(1)}
               </option>
             ))}
           </select>
-          
+
           {/* Color Filter */}
           <select
             value={filters.color}
@@ -46,11 +48,13 @@ const FiltersPanel = () => {
           >
             {colors.map(color => (
               <option key={color} value={color}>
-                {color.charAt(0).toUpperCase() + color.slice(1)}
+                {color === 'all'
+                  ? 'All Colors'
+                  : color.charAt(0).toUpperCase() + color.slice(1)}
               </option>
             ))}
           </select>
-          
+
           {/* Price Range */}
           <section className="flex items-center gap-2">
             <span className="font-light text-gray-700">Price:</span>
@@ -59,7 +63,7 @@ const FiltersPanel = () => {
             </span>
           </section>
         </section>
-        
+
         {/* Right side - Sort */}
         <section className="flex items-center gap-4">
           <span className="font-light text-gray-700">Sort by:</span>

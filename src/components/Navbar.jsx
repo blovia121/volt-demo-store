@@ -99,7 +99,7 @@ const Navbar = () => {
             }}
             className="text-4xl font-semibold text-orange-800 cursor-pointer"
           >
-            Haven<span className="text-2xl text-orange-500 font-bold">.</span>
+            Volt<span className="text-2xl text-orange-500 font-bold">.</span>
           </motion.button>
 
           {/* Desktop Navigation Links */}

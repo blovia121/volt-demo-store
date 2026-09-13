@@ -32,7 +32,7 @@ const Footer = () => {
     { icon: Facebook, url: 'https://facebook.com', label: 'Facebook' },
     { icon: Twitter, url: 'https://twitter.com', label: 'Twitter' },
     { icon: Instagram, url: 'https://instagram.com', label: 'Instagram' },
-    { icon: Mail, url: 'mailto:hello@haven.com', label: 'Email' }
+    { icon: Mail, url: 'mailto:hello@volt-store.com', label: 'Email' }
   ];
 
   return (
@@ -50,10 +50,11 @@ const Footer = () => {
               className="text-2xl font-light mb-4 text-gray-800 cursor-pointer"
               onClick={() => scrollToSection('home')}
             >
-              Haven<span className="text-2xl text-orange-500 font-bold">.</span>
+              Volt<span className="text-2xl text-orange-500 font-bold">.</span>
             </motion.h3>
             <p className="text-gray-600 font-light leading-relaxed">
-              Creating spaces that inspire peace and simplicity through minimalist furniture design.
+              Premium tech and gadgets with fast shipping, a 1-year warranty, and
+              AI-powered customer support available 24/7.
             </p>
           </section>
 
@@ -95,14 +96,14 @@ const Footer = () => {
           <section>
             <h4 className="font-light text-gray-800 mb-4">Connect With Us</h4>
             <section className="space-y-2 text-gray-600 font-light mb-4">
-              <p>123 Design Street</p>
-              <p>Creative City, CC 10001</p>
-              <p>hello@haven.com</p>
+              <p>123 Tech Street</p>
+              <p>Innovation City, IC 10001</p>
+              <p>hello@volt-store.com</p>
               <p>+1 (555) 123-4567</p>
             </section>
             
             <section className="flex space-x-4">
-              {socialLinks.map((social, index) => (
+              {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.url}
@@ -122,7 +123,7 @@ const Footer = () => {
         {/* Copyright */}
         <section className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-gray-600 font-light">
-            © 2025 Haven. All rights reserved. Crafted with simplicity in mind.
+            © 2026 Volt. All rights reserved. Demo store with AI-powered customer support.
           </p>
         </section>
       </section>

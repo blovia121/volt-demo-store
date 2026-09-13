@@ -1,23 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Users, Heart } from 'lucide-react';
+import { Zap, Shield, Headphones } from 'lucide-react';
 
 const AboutSection = () => {
   const features = [
     {
-      icon: Award,
-      title: 'Premium Quality',
-      description: 'Every piece is crafted with the finest materials and attention to detail.'
+      icon: Zap,
+      title: 'Fast Delivery',
+      description: 'Free shipping on orders over $50, with most packages arriving in 3-5 business days.'
     },
     {
-      icon: Users,
-      title: 'For Modern Living',
-      description: 'Designed for contemporary lifestyles that value simplicity and functionality.'
+      icon: Shield,
+      title: '1-Year Warranty',
+      description: 'Every product comes with a full manufacturer warranty and a 30-day return policy.'
     },
     {
-      icon: Heart,
-      title: 'Made with Love',
-      description: 'We pour passion into every design to create pieces you\'ll love for years.'
+      icon: Headphones,
+      title: 'AI-Powered Support',
+      description: 'Our smart support assistant answers your questions instantly, 24 hours a day.'
     }
   ];
 
@@ -30,14 +30,14 @@ const AboutSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          
           <h2 className="text-4xl font-light text-gray-800 mb-4 underline decoration-orange-500">
-            About Haven
+            About Volt
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-            We believe in creating furniture that brings peace and simplicity to
-            your living spaces. Our minimalist designs are crafted to stand the
-            test of time, both in quality and style.
+            Volt is a modern electronics store offering premium gadgets and
+            accessories at fair prices. We combine a curated product range with
+            an AI-powered support assistant, so you get fast answers and fast
+            shipping — every time.
           </p>
         </motion.section>
 
@@ -74,20 +74,20 @@ const AboutSection = () => {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
         >
           <section>
-            <section className="text-3xl font-light text-orange-500 mb-2">500+</section>
+            <section className="text-3xl font-light text-orange-500 mb-2">1,200+</section>
             <section className="text-gray-600">Happy Customers</section>
           </section>
           <section>
-            <section className="text-3xl font-light text-orange-500 mb-2">3</section>
-            <section className="text-gray-600">Years Experience</section>
+            <section className="text-3xl font-light text-orange-500 mb-2">50+</section>
+            <section className="text-gray-600">Products</section>
           </section>
           <section>
-            <section className="text-3xl font-light text-orange-500 mb-2">50+</section>
-            <section className="text-gray-600">Unique Designs</section>
+            <section className="text-3xl font-light text-orange-500 mb-2">4.8★</section>
+            <section className="text-gray-600">Average Rating</section>
           </section>
           <section>
             <section className="text-3xl font-light text-orange-500 mb-2">24/7</section>
-            <section className="text-gray-600">Customer Support</section>
+            <section className="text-gray-600">AI Support</section>
           </section>
         </motion.section>
       </section>

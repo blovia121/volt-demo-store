@@ -11,7 +11,6 @@ const ContactSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
     console.log('Form submitted:', formData);
     alert('Thank you for your message! We\'ll get back to you soon.');
     setFormData({ name: '', email: '', message: '' });
@@ -28,8 +27,8 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: 'Email',
-      info: 'hello@haven.com',
-      link: 'mailto:hello@haven.com'
+      info: 'hello@volt-store.com',
+      link: 'mailto:hello@volt-store.com'
     },
     {
       icon: Phone,
@@ -40,7 +39,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: 'Visit Us',
-      info: '123 Design Street, Creative City',
+      info: '123 Tech Street, Innovation City',
       link: '#'
     }
   ];
@@ -61,8 +60,8 @@ const ContactSection = () => {
             Get In Touch
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Have questions about our furniture? Need design advice? We'd love to
-            hear from you.
+            Have a question about an order? Need advice on which gadget fits
+            your setup? Our team (and our AI assistant) is here to help.
           </p>
         </motion.section>
 
@@ -117,9 +116,13 @@ const ContactSection = () => {
                 </section>
                 <section className="flex justify-between">
                   <span>Sunday</span>
-                  <span>Closed</span>
+                  <span>AI Support Only</span>
                 </section>
               </section>
+              <p className="text-gray-500 text-sm mt-4 italic">
+                Need help outside business hours? Try our AI assistant in the
+                corner — it's available 24/7.
+              </p>
             </motion.section>
           </motion.section>
 
@@ -188,7 +191,7 @@ const ContactSection = () => {
                   required
                   rows="5"
                   className="w-full bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-3 font-light focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-300 resize-none"
-                  placeholder="Tell us about your project or question..."
+                  placeholder="Tell us what you need help with..."
                 />
               </section>
 
