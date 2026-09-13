@@ -1,14 +1,22 @@
-// api/chat.js — Vercel serverless function
+// api/chat.js — Vercel serverless function with logging
 
-const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL = "openai/gpt-oss-120b";
+import { Redis } from '@upstash/redis';
+
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const MODEL = 'openai/gpt-oss-120b';
+
+// Init Redis (Vercel/Upstash)
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL,
+  token: process.env.KV_REST_API_TOKEN,
+});
 
 const ORDERS = {
-  "1001": { order_id: "1001", customer_name: "John Smith", product_name: "Wireless Headphones", status: "Shipped", order_date: "2025-01-10", estimated_delivery: "2025-01-15", tracking_number: "TRK123456789" },
-  "1002": { order_id: "1002", customer_name: "Sarah Johnson", product_name: "Smart Watch", status: "Processing", order_date: "2025-01-12", estimated_delivery: "2025-01-20", tracking_number: null },
-  "1003": { order_id: "1003", customer_name: "Mike Brown", product_name: "Bluetooth Speaker", status: "Delivered", order_date: "2025-01-05", estimated_delivery: "2025-01-09", tracking_number: "TRK987654321" },
-  "1004": { order_id: "1004", customer_name: "Emily Davis", product_name: "Laptop Stand", status: "Shipped", order_date: "2025-01-11", estimated_delivery: "2025-01-16", tracking_number: "TRK456789123" },
-  "1005": { order_id: "1005", customer_name: "David Wilson", product_name: "USB-C Hub", status: "Cancelled", order_date: "2025-01-08", estimated_delivery: "2025-01-12", tracking_number: null },
+  '1001': { order_id: '1001', customer_name: 'John Smith', product_name: 'Wireless Headphones', status: 'Shipped', order_date: '2025-01-10', estimated_delivery: '2025-01-15', tracking_number: 'TRK123456789' },
+  '1002': { order_id: '1002', customer_name: 'Sarah Johnson', product_name: 'Smart Watch', status: 'Processing', order_date: '2025-01-12', estimated_delivery: '2025-01-20', tracking_number: null },
+  '1003': { order_id: '1003', customer_name: 'Mike Brown', product_name: 'Bluetooth Speaker', status: 'Delivered', order_date: '2025-01-05', estimated_delivery: '2025-01-09', tracking_number: 'TRK987654321' },
+  '1004': { order_id: '1004', customer_name: 'Emily Davis', product_name: 'Laptop Stand', status: 'Shipped', order_date: '2025-01-11', estimated_delivery: '2025-01-16', tracking_number: 'TRK456789123' },
+  '1005': { order_id: '1005', customer_name: 'David Wilson', product_name: 'USB-C Hub', status: 'Cancelled', order_date: '2025-01-08', estimated_delivery: '2025-01-12', tracking_number: null },
 };
 
 const KNOWLEDGE_BASE = `
@@ -49,9 +57,9 @@ Contact:
 
 async function callGroq(messages, temperature = 0.3) {
   const response = await fetch(GROQ_API_URL, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
     },
     body: JSON.stringify({ model: MODEL, messages, temperature }),
@@ -68,8 +76,8 @@ async function callGroq(messages, temperature = 0.3) {
 
 function searchKnowledgeBase(query) {
   const queryLower = query.toLowerCase();
-  const sections = KNOWLEDGE_BASE.split("\n\n");
-  let bestSection = "";
+  const sections = KNOWLEDGE_BASE.split('\n\n');
+  let bestSection = '';
   let bestScore = 0;
   for (const section of sections) {
     const score = queryLower
@@ -83,20 +91,37 @@ function searchKnowledgeBase(query) {
   return bestSection || KNOWLEDGE_BASE;
 }
 
+// Log the interaction to Redis (fire-and-forget — never blocks the reply)
+async function logInteraction(intent, question, resolved) {
+  try {
+    const entry = {
+      timestamp: new Date().toISOString(),
+      intent,
+      question: question.slice(0, 200),
+      resolved,
+    };
+    await redis.lpush('chat:logs', JSON.stringify(entry));
+    await redis.ltrim('chat:logs', 0, 199); // keep the last 200 entries
+  } catch (err) {
+    console.error('Logging failed:', err);
+    // Don't throw — logging should never break the chat
+  }
+}
+
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
     let body = req.body;
-    if (typeof body === "string") {
+    if (typeof body === 'string') {
       body = JSON.parse(body);
     }
 
     const { message } = body || {};
-    if (!message || typeof message !== "string") {
-      return res.status(400).json({ error: "Message is required" });
+    if (!message || typeof message !== 'string') {
+      return res.status(400).json({ error: 'Message is required' });
     }
 
     const classificationPrompt = `You are a customer support agent for an online store.
@@ -112,8 +137,8 @@ No other text.`;
 
     const classificationRaw = await callGroq(
       [
-        { role: "system", content: classificationPrompt },
-        { role: "user", content: message },
+        { role: 'system', content: classificationPrompt },
+        { role: 'user', content: message },
       ],
       0
     );
@@ -121,21 +146,23 @@ No other text.`;
     let intent;
     try {
       let cleaned = classificationRaw;
-      if (cleaned.startsWith("```")) {
-        cleaned = cleaned.replace(/^```(json)?/, "").replace(/```$/, "").trim();
+      if (cleaned.startsWith('```')) {
+        cleaned = cleaned.replace(/^```(json)?/, '').replace(/```$/, '').trim();
       }
       intent = JSON.parse(cleaned);
     } catch {
-      intent = { action: "policy_question", question: message };
+      intent = { action: 'policy_question', question: message };
     }
 
     let reply;
     let intentType = intent.action;
+    let resolved = true;
 
-    if (intent.action === "order_status" && intent.order_id) {
+    if (intent.action === 'order_status' && intent.order_id) {
       const order = ORDERS[String(intent.order_id)];
       if (!order) {
         reply = `I couldn't find an order with ID ${intent.order_id}. Please double-check the number.`;
+        resolved = false;
       } else {
         const context = `Order ID: ${order.order_id}
 Customer: ${order.customer_name}
@@ -143,11 +170,11 @@ Product: ${order.product_name}
 Status: ${order.status}
 Order date: ${order.order_date}
 Estimated delivery: ${order.estimated_delivery}
-Tracking number: ${order.tracking_number || "Not available yet"}`;
+Tracking number: ${order.tracking_number || 'Not available yet'}`;
 
         reply = await callGroq([
           {
-            role: "user",
+            role: 'user',
             content: `You are a helpful customer support agent. Use the following order information to answer the user's question. Be concise and friendly.\n\nOrder details:\n${context}\n\nUser question: ${message}`,
           },
         ]);
@@ -157,15 +184,18 @@ Tracking number: ${order.tracking_number || "Not available yet"}`;
       const context = searchKnowledgeBase(question);
       reply = await callGroq([
         {
-          role: "user",
+          role: 'user',
           content: `You are a helpful customer support agent. Use the following store policy to answer the user's question. If the answer isn't in the policy, politely say you don't have that information.\n\nStore policy excerpt:\n${context}\n\nUser question: ${question}`,
         },
       ]);
     }
 
+    // Log AFTER the reply is ready, but don't await it — return fast
+    logInteraction(intentType, message, resolved);
+
     return res.status(200).json({ reply, intent: intentType });
   } catch (error) {
-    console.error("Chat API error:", error);
-    return res.status(500).json({ error: "Something went wrong. Please try again." });
+    console.error('Chat API error:', error);
+    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 }

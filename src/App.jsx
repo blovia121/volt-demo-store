@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { setProducts } from './store';
@@ -12,13 +12,30 @@ import ProductModal from './components/ProductModal';
 import CheckoutModal from './components/CheckoutModal';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
+import Dashboard from './components/Dashboard';
 import { products } from './data/product';
 
 function AppContent() {
+  const [route, setRoute] = useState(window.location.hash);
+
+  // Listen for hash changes (e.g. #dashboard, or back to #)
+  useEffect(() => {
+    const handleHashChange = () => setRoute(window.location.hash);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Load products once
   useEffect(() => {
     store.dispatch(setProducts(products));
   }, []);
 
+  // Route: #dashboard shows the analytics page
+  if (route === '#dashboard') {
+    return <Dashboard />;
+  }
+
+  // Default: the store
   return (
     <section className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
       <Navbar />
