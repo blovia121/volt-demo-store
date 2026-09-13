@@ -113,12 +113,17 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Message is required' });
     }
 
-    const classificationPrompt = `You are a customer support agent for an online store.
+    const classificationPrompt = `You are a classifier for an online store's customer support chat.
 Classify the user's message into one of three intents:
 
-1. order_status: the user is asking about a specific order. Extract the order ID (a number like 1001).
-2. policy_question: the user is asking about store policies (shipping, returns, warranty, payment, cancellation, contact).
-3. human_handoff: the user is asking to speak to a human, or expressing frustration that the AI can't help, or the request is outside customer support scope.
+1. order_status — the user is asking about a specific order. Extract the order ID (a number like 1001).
+2. policy_question — the user is asking about store policies, products, shipping, returns, warranty, payment, cancellation, or contact info. Also use this for greetings, thanks, goodbyes, or any general message that isn't a clear escalation.
+3. human_handoff — ONLY use this when the user EXPLICITLY asks to speak to a human, an agent, a person, or a representative, OR clearly states the AI cannot help them.
+
+Important rules:
+- Short messages like "thanks", "ok", "hi", "cool", "bye" are NOT human_handoff. Classify them as policy_question.
+- If you are unsure, default to policy_question.
+- Only pick human_handoff when the user's intent to reach a human is explicit and unambiguous.
 
 Respond ONLY with a JSON object in one of these formats:
 - {"action": "order_status", "order_id": "1001"}
