@@ -86,7 +86,7 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-orange-300 shadow-lg"
+      className="sticky top-0 z-50 bg-white/70 border-b border-orange-300 shadow-lg"
     >
       <section className="container mx-auto px-4 py-4">
         <section className="flex items-center justify-between">
@@ -123,7 +123,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => dispatch(toggleCart())}
-              className="relative p-2 rounded-full bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg hover:cursor-pointer"
+              className="relative p-2 rounded-full bg-white/80 border border-white/20 shadow-lg hover:cursor-pointer"
             >
               <ShoppingBag className="w-6 h-6 text-gray-700 hover:text-orange-500" />
               {itemCount > 0 && (
@@ -142,7 +142,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-full bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg mobile-menu-button hover:cursor-pointer"
+              className="md:hidden p-2 rounded-full bg-white/80 border border-white/20 shadow-lg mobile-menu-button hover:cursor-pointer"
             >
               <AnimatePresence mode="wait">
                 {isMobileMenuOpen ? (
@@ -179,7 +179,7 @@ const Navbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+                className="fixed inset-0 bg-black/20 z-40 md:hidden"
               />
 
               {/* Mobile Menu Panel */}
@@ -188,7 +188,7 @@ const Navbar = () => {
                 initial="closed"
                 animate="open"
                 exit="closed"
-                className="absolute left-4 right-4 top-20 mt-2 bg-white/95 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl z-50 overflow-hidden md:hidden mobile-menu"
+                className="absolute left-4 right-4 top-20 mt-2 bg-white/95 rounded-2xl border border-white/20 shadow-2xl z-50 overflow-hidden md:hidden mobile-menu"
               >
                 <section className="p-4 space-y-2">
                   {navItems.map((item, index) => (

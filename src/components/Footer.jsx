@@ -39,7 +39,7 @@ const Footer = () => {
     <motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      className="bg-white/70 backdrop-blur-md border-t border-white/20"
+      className="bg-white/70 border-t border-white/20"
     >
       <section className="container mx-auto px-4 py-12">
         <section className="grid grid-cols-1 md:grid-cols-4 gap-8">

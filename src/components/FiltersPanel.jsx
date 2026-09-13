@@ -15,7 +15,7 @@ const FiltersPanel = () => {
     <motion.section
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white/70 backdrop-blur-md rounded-2xl p-6 mb-8 border border-white/20 shadow-lg"
+      className="bg-white/70 rounded-2xl p-6 mb-8 border border-white/20 shadow-lg"
     >
       <section className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
         {/* Left side - Filters */}
@@ -29,7 +29,7 @@ const FiltersPanel = () => {
           <select
             value={filters.category}
             onChange={(e) => dispatch(setFilters({ category: e.target.value }))}
-            className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 font-light text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50"
+            className="bg-white/80 border border-white/20 rounded-full px-4 py-2 font-light text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50"
           >
             {categories.map(category => (
               <option key={category} value={category}>
@@ -44,7 +44,7 @@ const FiltersPanel = () => {
           <select
             value={filters.color}
             onChange={(e) => dispatch(setFilters({ color: e.target.value }))}
-            className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 font-light text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50"
+            className="bg-white/80 border border-white/20 rounded-full px-4 py-2 font-light text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50"
           >
             {colors.map(color => (
               <option key={color} value={color}>
@@ -70,7 +70,7 @@ const FiltersPanel = () => {
           <select
             value={sort}
             onChange={(e) => dispatch(setSort(e.target.value))}
-            className="bg-white/80 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 font-light text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50"
+            className="bg-white/80 border border-white/20 rounded-full px-4 py-2 font-light text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50"
           >
             <option value="newest">Newest</option>
             <option value="popular">Popular</option>

@@ -22,7 +22,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white/50 backdrop-blur-sm">
+    <section id="about" className="py-20 bg-white/50">
       <section className="container mx-auto px-4">
         <motion.section
           initial={{ opacity: 0, y: 30 }}

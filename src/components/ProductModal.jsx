@@ -42,7 +42,7 @@ const ProductModal = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => dispatch(closeProductModal())}
-            className="fixed inset-0 bg-black/56 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/56 z-50"
           />
           
           {/* Modal */}
@@ -50,14 +50,14 @@ const ProductModal = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="fixed inset-4 md:inset-20 bg-white/90 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl z-50 overflow-auto"
+            className="fixed inset-4 md:inset-20 bg-white/90 rounded-3xl border border-white/20 shadow-2xl z-50 overflow-auto"
           >
             {/* Close Button */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => dispatch(closeProductModal())}
-              className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg"
+              className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full shadow-lg"
             >
               <X className="w-6 h-6" />
             </motion.button>
@@ -77,13 +77,13 @@ const ProductModal = () => {
                     <>
                       <button
                         onClick={prevImage}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg"
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 rounded-full shadow-lg"
                       >
                         <ChevronLeft className="w-6 h-6" />
                       </button>
                       <button
                         onClick={nextImage}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/80 rounded-full shadow-lg"
                       >
                         <ChevronRight className="w-6 h-6" />
                       </button>
@@ -127,7 +127,7 @@ const ProductModal = () => {
                       {selectedProduct.features.map((feature, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1 bg-white/50 backdrop-blur-sm rounded-full text-sm font-light border border-white/20"
+                          className="px-3 py-1 bg-white/50 rounded-full text-sm font-light border border-white/20"
                         >
                           {feature}
                         </span>
@@ -174,7 +174,7 @@ const ProductModal = () => {
                       selectedProduct.inStock
                         ? 'bg-orange-500 text-white'
                         : 'bg-gray-400 text-gray-200 cursor-not-allowed'
-                    } backdrop-blur-sm border border-white/20 shadow-lg`}
+                    } border border-white/20 shadow-lg`}
                   >
                     <ShoppingCart className="w-5 h-5" />
                     {selectedProduct.inStock 

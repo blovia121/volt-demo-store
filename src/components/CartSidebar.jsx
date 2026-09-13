@@ -20,7 +20,7 @@ const CartSidebar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => dispatch(toggleCart())}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/50 z-50"
           />
           
           {/* Sidebar */}
@@ -29,7 +29,7 @@ const CartSidebar = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30 }}
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-white/90 backdrop-blur-md border-l border-white/20 shadow-2xl z-50 overflow-y-auto"
+            className="fixed right-0 top-0 h-full w-full max-w-md bg-white/90 border-l border-white/20 shadow-2xl z-50 overflow-y-auto"
           >
             {/* Header */}
             <section className="p-6 border-b border-white/20">
@@ -64,7 +64,7 @@ const CartSidebar = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
-                    className="flex items-center gap-4 bg-white/50 backdrop-blur-sm rounded-2xl p-4 border border-white/20"
+                    className="flex items-center gap-4 bg-white/50 rounded-2xl p-4 border border-white/20"
                   >
                     <img
                       src={item.images[0]}
@@ -120,7 +120,7 @@ const CartSidebar = () => {
 
             {/* Footer */}
             {items.length > 0 && (
-              <section className="absolute bottom-0 left-0 right-0 p-6 border-t border-white/20 bg-white/50 backdrop-blur-md">
+              <section className="absolute bottom-0 left-0 right-0 p-6 border-t border-white/20 bg-white/50">
                 <section className="flex justify-between items-center mb-4">
                   <span className="text-lg font-light text-gray-800">Total:</span>
                   <span className="text-2xl font-light text-orange-500">${total.toFixed(2)}</span>
@@ -133,7 +133,7 @@ const CartSidebar = () => {
                     dispatch(toggleCart());
                     dispatch(toggleCheckout());
                   }}
-                  className="w-full bg-orange-500 text-white py-4 rounded-2xl font-light text-lg backdrop-blur-sm border border-white/20 shadow-lg"
+                  className="w-full bg-orange-500 text-white py-4 rounded-2xl font-light text-lg border border-white/20 shadow-lg"
                 >
                   Proceed to Checkout
                 </motion.button>

@@ -107,7 +107,7 @@ const ChatWidget = () => {
         </AnimatePresence>
 
         {!isOpen && (
-          <span className="absolute top-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-pulse" />
+          <span className="absolute top-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
         )}
       </motion.button>
 

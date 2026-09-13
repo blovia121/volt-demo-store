@@ -85,7 +85,7 @@ const ContactSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-4 p-4 bg-white/70 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="flex items-center gap-4 p-4 bg-white/70 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
                 <section className="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center group-hover:bg-orange-500/20 transition-colors">
                   <method.icon className="w-6 h-6 text-orange-500" />
@@ -102,7 +102,7 @@ const ContactSection = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg"
+              className="p-6 bg-white/70 rounded-2xl border border-white/20 shadow-lg"
             >
               <h4 className="font-light text-gray-800 mb-3">Business Hours</h4>
               <section className="space-y-2 text-gray-600">
@@ -131,7 +131,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-lg"
+            className="bg-white/70 rounded-2xl p-8 border border-white/20 shadow-lg"
           >
             <h3 className="text-2xl font-light text-gray-800 mb-6">
               Send us a Message
@@ -152,7 +152,7 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-3 font-light focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-300"
+                  className="w-full bg-white/80 border border-white/20 rounded-2xl px-4 py-3 font-light focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-300"
                   placeholder="Enter your name"
                 />
               </section>
@@ -171,7 +171,7 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-3 font-light focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-300"
+                  className="w-full bg-white/80 border border-white/20 rounded-2xl px-4 py-3 font-light focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-300"
                   placeholder="Enter your email"
                 />
               </section>
@@ -190,7 +190,7 @@ const ContactSection = () => {
                   onChange={handleChange}
                   required
                   rows="5"
-                  className="w-full bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-3 font-light focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-300 resize-none"
+                  className="w-full bg-white/80 border border-white/20 rounded-2xl px-4 py-3 font-light focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-300 resize-none"
                   placeholder="Tell us what you need help with..."
                 />
               </section>
@@ -199,7 +199,7 @@ const ContactSection = () => {
                 type="submit"
                 whileHover={{ scale: 1.02, backgroundColor: "#ea580c" }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-orange-500 text-white py-4 rounded-2xl font-light text-lg backdrop-blur-sm border border-white/20 shadow-lg flex items-center justify-center gap-2"
+                className="w-full bg-orange-500 text-white py-4 rounded-2xl font-light text-lg border border-white/20 shadow-lg flex items-center justify-center gap-2"
               >
                 <Send className="w-5 h-5" />
                 Send Message

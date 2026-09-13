@@ -25,7 +25,7 @@ const ProductCard = ({ product, index }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className="group bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300"
+      className="group bg-white/70 rounded-2xl overflow-hidden border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300"
     >
       {/* Image Container */}
       <section className="relative overflow-hidden">
@@ -43,18 +43,18 @@ const ProductCard = ({ product, index }) => {
         {/* Badges */}
         <section className="absolute top-4 left-4 flex gap-2">
           {product.isNew && (
-            <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-light backdrop-blur-sm">
+            <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-light">
               New
             </span>
           )}
           {product.isPopular && (
-            <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-light backdrop-blur-sm flex items-center gap-1">
+            <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-light flex items-center gap-1">
               <Star className="w-3 h-3 fill-current" />
               Popular
             </span>
           )}
           {!product.inStock && (
-            <span className="bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-light backdrop-blur-sm">
+            <span className="bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-light">
               Out of Stock
             </span>
           )}
@@ -64,7 +64,7 @@ const ProductCard = ({ product, index }) => {
         <motion.button
           initial={{ opacity: 1, scale: 0.8 }}
           whileHover={{ opacity: 1, scale: 1 }}
-          className="absolute top-4 right-4 bg-black/30 backdrop-blur-sm p-2 rounded-full shadow-lg z-50 hover:cursor-pointer"
+          className="absolute top-4 right-4 bg-black/30 p-2 rounded-full shadow-lg z-50 hover:cursor-pointer"
           onClick={handlePreview}
         >
           <Eye className="w-5 h-5 text-orange-800" />
@@ -91,7 +91,7 @@ const ProductCard = ({ product, index }) => {
             onClick={handleAddToCart}
             className={`px-6 py-2 rounded-full font-light text-white ${
               product.inStock
-                ? "bg-orange-500/90 backdrop-blur-sm hover:bg-orange-600"
+                ? "bg-orange-500/90 hover:bg-orange-600"
                 : "bg-gray-400 cursor-not-allowed"
             } border border-white/20 shadow-lg`}
           >

@@ -26,7 +26,7 @@ const Hero = () => {
       />
 
       {/* Glass Overlay */}
-      <section className="absolute inset-0 bg-linear-to-b from-black/90 to-orange-400/30 backdrop-blur-[1px]" />
+      <section className="absolute inset-0 bg-linear-to-b from-black/90 to-orange-400/30" />
 
       {/* Content */}
       <section className="relative z-10 text-center text-white px-4">
@@ -55,7 +55,7 @@ const Hero = () => {
           whileHover={{ scale: 1.05, backgroundColor: "#ea580c" }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToCatalog}
-          className="bg-orange-500/90 backdrop-blur-sm text-white px-8 py-4 rounded-full font-light text-lg flex items-center gap-2 mx-auto border border-white/20 shadow-2xl hover:cursor-pointer"
+          className="bg-orange-500/90 text-white px-8 py-4 rounded-full font-light text-lg flex items-center gap-2 mx-auto border border-white/20 shadow-2xl hover:cursor-pointer"
         >
           Shop Now
           <ArrowRight className="w-5 h-5" />
