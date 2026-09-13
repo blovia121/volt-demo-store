@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,6 @@ const ChatWidget = () => {
     const trimmed = input.trim();
     if (!trimmed || isLoading) return;
 
-    // Add user message to the list
     const userMessage = { role: 'user', content: trimmed };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
@@ -55,8 +55,7 @@ const ChatWidget = () => {
         ...prev,
         {
           role: 'assistant',
-          content:
-            "Sorry, something went wrong. Please try again in a moment.",
+          content: 'Sorry, something went wrong. Please try again in a moment.',
         },
       ]);
     } finally {
@@ -146,13 +145,17 @@ const ChatWidget = () => {
                   }`}
                 >
                   <div
-                    className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
+                    className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm leading-relaxed ${
                       msg.role === 'user'
                         ? 'bg-orange-500 text-white rounded-br-sm'
                         : 'bg-white text-gray-800 border border-gray-200 rounded-bl-sm'
                     }`}
                   >
-                    {msg.content}
+                    {msg.role === 'user' ? (
+                      msg.content
+                    ) : (
+                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    )}
                   </div>
                 </div>
               ))}
