@@ -19,6 +19,7 @@ const Footer = () => {
     { id: "about", label: "About Us" },
     { id: "catalog", label: "Catalog" },
     { id: "contact", label: "Contact" },
+    { href: "#dashboard", label: "AI Analytics" },
   ];
 
   const policyLinks = [
@@ -63,14 +64,25 @@ const Footer = () => {
             <h4 className="font-light text-gray-800 mb-4">Quick Links</h4>
             <section className="space-y-2">
               {quickLinks.map((link) => (
-                <motion.button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  whileHover={{ color: '#f97316', x: 5 }}
-                  className="block text-gray-600 font-light hover:text-orange-500 transition-colors text-left cursor-pointer"
-                >
-                  {link.label}
-                </motion.button>
+                link.href ? (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    whileHover={{ color: '#f97316', x: 5 }}
+                    className="block text-gray-600 font-light hover:text-orange-500 transition-colors text-left cursor-pointer"
+                  >
+                    {link.label}
+                  </motion.a>
+                ) : (
+                  <motion.button
+                    key={link.id}
+                    onClick={() => scrollToSection(link.id)}
+                    whileHover={{ color: '#f97316', x: 5 }}
+                    className="block text-gray-600 font-light hover:text-orange-500 transition-colors text-left cursor-pointer"
+                  >
+                    {link.label}
+                  </motion.button>
+                )
               ))}
             </section>
           </section>

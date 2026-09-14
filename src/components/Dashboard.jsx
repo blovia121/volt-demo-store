@@ -47,7 +47,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -75,7 +75,7 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-6 py-10 max-w-6xl">
+      <main className="container mx-auto px-6 py-10 max-w-6xl flex-1">
         {loading && !metrics && (
           <div className="text-center py-20 text-gray-500">Loading metrics...</div>
         )}
@@ -226,6 +226,37 @@ const Dashboard = () => {
           </>
         )}
       </main>
+
+      {/* Attribution footer */}
+      <footer className="border-t border-gray-200 mt-12 py-6 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl text-center">
+          <p className="text-sm text-gray-600">
+            Built by{' '}
+            <span className="font-medium text-gray-800">Volt AI</span> — AI support agents for small e-commerce brands
+          </p>
+          <p className="text-sm text-gray-500 mt-1">
+            DM{' '}
+            <a
+              href="https://instagram.com/voltai.build"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-500 hover:text-orange-600"
+            >
+              @voltai.build
+            </a>{' '}
+            · Email{' '}
+            <a
+              href="mailto:aymanemekouar13@gmail.com"
+              className="text-orange-500 hover:text-orange-600"
+            >
+              aymanemekouar13@gmail.com
+            </a>
+          </p>
+          <p className="text-xs text-gray-400 mt-3">
+            Want this for your store? Free setup + $150/month. Cancel anytime.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
