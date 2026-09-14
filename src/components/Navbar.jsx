@@ -13,7 +13,7 @@ const Navbar = () => {
 
   // Smooth scroll function
   const scrollToSection = (sectionId) => {
-    setIsMobileMenuOpen(false); // Close mobile menu after click
+    setIsMobileMenuOpen(false);
     const element = document.getElementById(sectionId);
     if (element) {
       const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
@@ -52,6 +52,7 @@ const Navbar = () => {
     { id: "about", label: "About" },
     { id: "catalog", label: "Catalog" },
     { id: "contact", label: "Contact" },
+    { href: "#dashboard", label: "Analytics" },
   ];
 
   const mobileMenuVariants = {
@@ -104,16 +105,27 @@ const Navbar = () => {
 
           {/* Desktop Navigation Links */}
           <section className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                whileHover={{ color: "#f97316" }}
-                className="text-orange-300 hover:text-orange-500 transition-colors font-normal cursor-pointer"
-              >
-                {item.label}
-              </motion.button>
-            ))}
+            {navItems.map((item) =>
+              item.href ? (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  whileHover={{ color: "#f97316" }}
+                  className="text-orange-300 hover:text-orange-500 transition-colors font-normal cursor-pointer"
+                >
+                  {item.label}
+                </motion.a>
+              ) : (
+                <motion.button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  whileHover={{ color: "#f97316" }}
+                  className="text-orange-300 hover:text-orange-500 transition-colors font-normal cursor-pointer"
+                >
+                  {item.label}
+                </motion.button>
+              )
+            )}
           </section>
 
           {/* Mobile menu button and cart */}
@@ -191,19 +203,33 @@ const Navbar = () => {
                 className="absolute left-4 right-4 top-20 mt-2 bg-white/95 rounded-2xl border border-white/20 shadow-2xl z-50 overflow-hidden md:hidden mobile-menu"
               >
                 <section className="p-4 space-y-2">
-                  {navItems.map((item, index) => (
-                    <motion.button
-                      key={item.id}
-                      variants={mobileMenuItemVariants}
-                      initial="closed"
-                      animate="open"
-                      transition={{ delay: index * 0.1 }}
-                      onClick={() => scrollToSection(item.id)}
-                      className="w-full text-left px-4 py-3 rounded-xl font-light text-gray-600 hover:bg-gray-100/50 hover:text-orange-500 transition-all duration-200 hover:cursor-pointer"
-                    >
-                      {item.label}
-                    </motion.button>
-                  ))}
+                  {navItems.map((item, index) =>
+                    item.href ? (
+                      <motion.a
+                        key={item.label}
+                        href={item.href}
+                        variants={mobileMenuItemVariants}
+                        initial="closed"
+                        animate="open"
+                        transition={{ delay: index * 0.1 }}
+                        className="block w-full text-left px-4 py-3 rounded-xl font-light text-gray-600 hover:bg-gray-100/50 hover:text-orange-500 transition-all duration-200 hover:cursor-pointer"
+                      >
+                        {item.label}
+                      </motion.a>
+                    ) : (
+                      <motion.button
+                        key={item.id}
+                        variants={mobileMenuItemVariants}
+                        initial="closed"
+                        animate="open"
+                        transition={{ delay: index * 0.1 }}
+                        onClick={() => scrollToSection(item.id)}
+                        className="w-full text-left px-4 py-3 rounded-xl font-light text-gray-600 hover:bg-gray-100/50 hover:text-orange-500 transition-all duration-200 hover:cursor-pointer"
+                      >
+                        {item.label}
+                      </motion.button>
+                    )
+                  )}
 
                   {/* Cart in mobile menu */}
                   <motion.section
